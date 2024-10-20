@@ -6,7 +6,7 @@
 /*   By: cauvray <cauvray@student.42lehavre.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 14:13:06 by cauvray           #+#    #+#             */
-/*   Updated: 2024/10/20 05:00:13 by cauvray          ###   ########.fr       */
+/*   Updated: 2024/10/20 21:01:47 by cauvray          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -338,24 +338,9 @@ int main()
 	 * -> # marche po pas de parse 
 	 * -> ' ' (space) same behaviour que sans espace pour au debut (only debut not after)
 	 * -> + only start -> pas aftet (comme space) -> add plus if number is positive
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
 	 */
 
-
-
-	printf("Nb: ~%d~\n", ft_atoi(" +34343e"));
-
-
-
-
-	char *test = "%+0#444.23d % -+h sseeeeeee %--s -------- %  +dee";
+	char *test = "%+0#444.23d % -+h ssee%43seeeee %--s -------- %  +dee";
 
 	int i = 0;
 	while (test[i]) {
