@@ -6,19 +6,21 @@
 /*   By: cauvray <cauvray@student.42lehavre.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/20 21:08:26 by cauvray           #+#    #+#             */
-/*   Updated: 2024/10/20 23:27:14 by cauvray          ###   ########.fr       */
+/*   Updated: 2024/10/21 02:05:44 by cauvray          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 #include "libft.h"
 
+// FIXME: Maybe problem if no dot
+
 int	ft_spaces(char *str, int nb_bef, int nb_aft)
 {
 	int	str_len;
 
 	str_len = ft_strlen(str);
-	if (str_len > nb_aft)
+	if (str_len > nb_aft && nb_aft > 0)
 		str_len = nb_aft;
 	if (nb_bef > str_len)
 		return (nb_bef - str_len);
@@ -51,6 +53,8 @@ size_t	ft_printf_s(t_printf_params *params, char *str)
 	}
 	if (params->dot)
 		size += ft_putnstr(str, params->nb_after_dot);
+	else
+		size += ft_putnstr(str, -1);
 	while (spaces-- > 0)
 		ft_putchar_fd(' ', 0);
 	return (size);
