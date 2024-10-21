@@ -6,11 +6,11 @@
 /*   By: cauvray <cauvray@student.42lehavre.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 01:34:31 by cauvray           #+#    #+#             */
-/*   Updated: 2024/10/21 01:45:21 by cauvray          ###   ########.fr       */
+/*   Updated: 2024/10/21 02:20:39 by cauvray          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/libftprintf.h"
+#include "../includes/ft_printf.h"
 
 size_t	ft_putint(int value)
 {

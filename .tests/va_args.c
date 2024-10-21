@@ -6,12 +6,12 @@
 /*   By: cauvray <cauvray@student.42lehavre.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 01:26:48 by cauvray           #+#    #+#             */
-/*   Updated: 2024/10/21 01:31:27 by cauvray          ###   ########.fr       */
+/*   Updated: 2024/10/21 02:20:46 by cauvray          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/libft.h"
-#include "../includes/libftprintf.h"
+#include "../includes/ft_printf.h"
 #include <stdio.h>
 #include <assert.h>
 
