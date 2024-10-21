@@ -1,0 +1,90 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf_params.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cauvray <cauvray@student.42lehavre.fr>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/10/21 04:26:45 by cauvray           #+#    #+#             */
+/*   Updated: 2024/10/21 18:26:23 by cauvray          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "ft_printf.h"
+#include "libft.h"
+
+static int	ft_is_parsed_char(char c)
+{
+	char	*str;
+
+	str = "cspdiuxX%";
+	while (*str)
+	{
+		if (c == *str++)
+			return (1);
+	}
+	return (0);
+}
+
+static int	ft_is_print_flag(char c)
+{
+	char	*str;
+
+	str = "-0.# +";
+	while (*str)
+	{
+		if (ft_isdigit(c) || c == *str++)
+			return (1);
+	}
+	return (0);
+}
+
+static void	ft_save_flag(t_printf_params **printf_params, char c)
+{
+	if (c == '-')
+		(*printf_params)->minus = 1;
+	else if (c == '0')
+		(*printf_params)->zero = 1;
+	else if (c == '.')
+		(*printf_params)->dot = 1;
+	else if (c == '#')
+		(*printf_params)->hashtag = 1;
+	else if (c == ' ')
+		(*printf_params)->space = 1;
+	else if (c == '+')
+		(*printf_params)->plus = 1;
+	else if (ft_is_parsed_char(c))
+		(*printf_params)->c = c;
+}
+
+char	*ft_get_printf_params_str(const char *str)
+{
+	int	i;
+
+	i = 1;
+	while (str[i] && ft_is_print_flag(str[i]))
+		i++;
+	if (!ft_is_parsed_char(str[i]))
+		return (NULL);
+	return (ft_substr(str, 0, i + 1));
+}
+
+t_printf_params	*ft_get_printf_params(char *str)
+{
+	t_printf_params	*params;
+
+	params = (t_printf_params *) malloc(sizeof(t_printf_params));
+	if (!params)
+		return (NULL);
+	ft_memset(params, 0, sizeof(t_printf_params));
+	while (*str)
+	{
+		if (ft_isdigit(*str) && !(params->dot) && !(params->nb_before_dot))
+			params->nb_before_dot = ft_atoi(str);
+		else if (ft_isdigit(*str) && params->dot && !(params->nb_after_dot))
+			params->nb_after_dot = ft_atoi(str);
+		ft_save_flag(&params, *str);
+		str++;
+	}
+	return (params);
+}

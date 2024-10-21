@@ -6,21 +6,28 @@
 #    By: cauvray <cauvray@student.42lehavre.fr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/18 13:09:18 by cauvray           #+#    #+#              #
-#    Updated: 2024/10/19 03:07:36 by cauvray          ###   ########.fr        #
+#    Updated: 2024/10/21 17:47:52 by cauvray          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = libftprintf.a
-CC = cc
-CFLAGS += -Wall -Wextra -Werror
+NAME	= libftprintf.a
+CC		= gcc
+CFLAGS	+= -Wall -Wextra -Werror
+AR		= ar rcs
+RM		= rm -f
 
-SRC_DIR = srcs
-OBJ_DIR = objs
-INC_DIR = includes
+SRC_DIR	= srcs
+OBJ_DIR	= objs
+INC_DIR	= includes
 
-_SRCS = ft_printf.c \
-		ft_printf_hex.c
-SRCS = $(addprefix $(SRC_DIR)/,$(_SRCS))
+_SRCS = ft_hex_utils.c \
+		ft_printf_c.c \
+		ft_printf_params.c \
+		ft_printf_s.c \
+		ft_printf_utils.c \
+		ft_printf_x.c \
+		ft_printf.c
+SRCS = $(addprefix $(SRC_DIR)/, $(_SRCS))
 
 _OBJS = $(_SRCS:.c=.o)
 OBJS = $(addprefix $(OBJ_DIR)/,$(_OBJS))
@@ -28,27 +35,27 @@ OBJS = $(addprefix $(OBJ_DIR)/,$(_OBJS))
 all:	$(NAME)
 
 $(NAME): $(OBJS)
-	@$(MAKE) bonus -C libft
-	@cp libft/libft.a .
-	@mv libft.a $@
-	@ar rcs $@ $^
+	$(MAKE) bonus -C libft
+	cp libft/libft.a .
+	mv libft.a $@
+	$(AR) $@ $^
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
-	@mkdir -p $(OBJ_DIR)
-	@$(CC) $(CFLAGS) -c -Iincludes $< -o $@
+	mkdir -p $(OBJ_DIR)
+	$(CC) $(CFLAGS) -c -Iincludes $< -o $@
 
 clean:
-	@rm -rf $(OBJ_DIR)
-	@make clean -C libft
+	$(RM) -r $(OBJ_DIR)
+	make clean -C libft
 
 fclean:	clean
-	@rm -f $(NAME)
-	@$(MAKE) fclean -C libft
+	$(RM) $(NAME)
+	$(MAKE) fclean -C libft
 
 re:	fclean all
 
 test: all
-	@$(CC) $(CFLAGS) main.c -L. -lftprintf -o main
-	@clear && ./main && rm ./main
+	$(CC) $(CFLAGS) .tests/main2.c -L. -lftprintf -o main
+	clear && ./main
 
 .PHONY:	all clean fclean re

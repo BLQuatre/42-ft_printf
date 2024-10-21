@@ -6,16 +6,14 @@
 /*   By: cauvray <cauvray@student.42lehavre.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/20 21:08:26 by cauvray           #+#    #+#             */
-/*   Updated: 2024/10/21 02:05:44 by cauvray          ###   ########.fr       */
+/*   Updated: 2024/10/21 18:32:23 by cauvray          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 #include "libft.h"
 
-// FIXME: Maybe problem if no dot
-
-int	ft_spaces(char *str, int nb_bef, int nb_aft)
+static int	ft_spaces(char *str, int nb_bef, int nb_aft)
 {
 	int	str_len;
 
@@ -28,7 +26,7 @@ int	ft_spaces(char *str, int nb_bef, int nb_aft)
 		return (0);
 }
 
-size_t	ft_putnstr(char *str, size_t len)
+static size_t	ft_putnstr(char *str, size_t len)
 {
 	size_t	count;
 
@@ -44,18 +42,16 @@ size_t	ft_printf_s(t_printf_params *params, char *str)
 	int		spaces;
 
 	size = 0;
+	if (!str)
+		str = "(null)";
 	spaces = ft_spaces(str, params->nb_before_dot, params->nb_after_dot);
-	size += spaces;
-	if (!params->minus)
-	{
-		while (spaces-- > 0)
-			ft_putchar_fd(' ', 0);
-	}
+	while (!params->minus && spaces-- > 0)
+		size += ft_putchar(' ');
 	if (params->dot)
 		size += ft_putnstr(str, params->nb_after_dot);
 	else
-		size += ft_putnstr(str, -1);
+		size += ft_putstr(str);
 	while (spaces-- > 0)
-		ft_putchar_fd(' ', 0);
+		size += ft_putchar(' ');
 	return (size);
 }
