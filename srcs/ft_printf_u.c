@@ -1,28 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_x.c                                      :+:      :+:    :+:   */
+/*   ft_printf_u.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cauvray <cauvray@student.42lehavre.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/20 21:08:26 by cauvray           #+#    #+#             */
-/*   Updated: 2024/10/22 12:15:32 by cauvray          ###   ########.fr       */
+/*   Updated: 2024/10/22 12:15:21 by cauvray          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include "libft.h"
 
-static unsigned long long	ft_spaces(char *str, t_printf_params *params)
+static unsigned int	ft_spaces(char *str, t_printf_params *params)
 {
-	unsigned long long	result;
+	unsigned int	result;
 
 	result = 0;
 	if (params->nb_after_dot > params->nb_before_dot)
 		return (result);
 	result = params->nb_before_dot - params->nb_after_dot + 1;
-	if (params->hashtag && result > 1)
-		result -= 2;
+	if ((params->space || params->plus) && result > 1)
+		result--;
 	if ((params->nb_before_dot > params->nb_after_dot
 			&& params->nb_after_dot > 0)
 		|| params->nb_before_dot == params->nb_after_dot)
@@ -30,39 +30,20 @@ static unsigned long long	ft_spaces(char *str, t_printf_params *params)
 	return (result - ft_strlen(str));
 }
 
-static int	ft_puthexstr(char *str, int len)
+unsigned int	ft_printf_u(t_printf_params *params, unsigned int n)
 {
-	int	count;
-
-	count = 0;
-	while (len-- > 0)
-		count += ft_putchar('0');
-	while (*str)
-		count += ft_putchar(*str++);
-	return (count);
-}
-
-int	ft_printf_x(t_printf_params *params, unsigned long long n, int upper)
-{
-	int					size;
-	unsigned long long	spaces;
-	char				*hex;
+	unsigned int	size;
+	unsigned int	spaces;
+	char			*nbr;
 
 	size = 0;
-	hex = ft_int_to_hex(n, upper);
-	spaces = ft_spaces(hex, params);
+	nbr = ft_uitoa(n);
+	spaces = ft_spaces(nbr, params);
 	while (!params->minus && --spaces > 0)
-		size += ft_putchar(' ');
-	if (params->hashtag)
-	{
-		if (upper)
-			size += ft_putstr("0X");
-		else
-			size += ft_putstr("0x");
-	}
-	size += ft_puthexstr(hex, params->nb_after_dot - ft_strlen(hex));
+		size += ft_putchar('0');
+	size += ft_putstr(nbr);
 	while (spaces-- > 0)
 		size += ft_putchar(' ');
-	free(hex);
+	free(nbr);
 	return (size);
 }

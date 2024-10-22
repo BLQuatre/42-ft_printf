@@ -6,28 +6,18 @@
 /*   By: cauvray <cauvray@student.42lehavre.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 14:05:40 by cauvray           #+#    #+#             */
-/*   Updated: 2024/10/21 18:19:14 by cauvray          ###   ########.fr       */
+/*   Updated: 2024/10/22 16:08:14 by cauvray          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include "libft.h"
 
-int	ft_test(t_printf_params *params)
+int	ft_free_params(t_printf_params *params)
 {
 	free(params);
 	return (0);
 }
-
-// ft_check_params(t_printf_params *params)
-// {
-// 	t_printf_params	*params;
-// 	int				print_length;
-
-// 	params = ft_get_printf_params(params_str);
-// 	if (!params)
-// 		return (ft_test(params));
-// }
 
 int	ft_formats(va_list args, char *params_str)
 {
@@ -36,22 +26,22 @@ int	ft_formats(va_list args, char *params_str)
 
 	params = ft_get_printf_params(params_str);
 	if (!params)
-		return (ft_test(params));
+		return (ft_free_params(params));
 	print_length = 0;
 	if (params->c == 'c')
 		print_length += ft_printf_c(params, va_arg(args, int));
 	else if (params->c == 's')
 		print_length += ft_printf_s(params, va_arg(args, char *));
-	//else if (params->c == 'p')
-	//	print_length += ft_print_ptr(va_arg(args, unsigned long long));
-	//else if (params->c == 'd' || params->c == 'i')
-	//	print_length += ft_printnbr(va_arg(args, int));
-	//else if (params->c == 'u')
-	//	print_length += ft_print_unsigned(va_arg(args, unsigned int));
-	//else if (params->c == 'x') // FIXME : BIG VALGRIND
-	//	print_length += ft_printf_x(params, va_arg(args, unsigned int), 0);
-	//else if (params->c == 'X')
-	//	print_length += ft_printf_x(params, va_arg(args, unsigned int), 1);
+	else if (params->c == 'p')
+		print_length += ft_printf_p(params, va_arg(args, unsigned long long));
+	else if (params->c == 'd' || params->c == 'i')
+		print_length += ft_printf_id(params, va_arg(args, int));
+	else if (params->c == 'u')
+		print_length += ft_printf_u(params, va_arg(args, unsigned int));
+	else if (params->c == 'x')
+		print_length += ft_printf_x(params, va_arg(args, unsigned int), 0);
+	else if (params->c == 'X')
+		print_length += ft_printf_x(params, va_arg(args, unsigned int), 1);
 	else if (params->c == '%')
 		print_length += ft_putchar('%');
 	free(params);

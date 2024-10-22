@@ -6,7 +6,7 @@
 /*   By: cauvray <cauvray@student.42lehavre.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 17:25:24 by cauvray           #+#    #+#             */
-/*   Updated: 2024/10/21 18:26:36 by cauvray          ###   ########.fr       */
+/*   Updated: 2024/10/22 16:31:32 by cauvray          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,16 @@
 #include "../includes/libft.h"
 #include <stdio.h>
 #include <assert.h>
+#include <limits.h>
 
 int main()
 {
-	int i1 = ft_printf("~ %s %s %s %s %s ~", " - ", "", "4", "", "2 ");
-	printf("\n");
-	int i2 = printf("~ %s %s %s %s %s ~", " - ", "", "4", "", "2 ");
+	ft_printf(" %-1i ", 10);
+	ft_printf(" %.11i ", LONG_MIN);
 
-	printf("\n\n~%d~\n\n~~%d~\n\n", i1, i2);
-	char *s1 = NULL;
-	int i3 = ft_printf("~ %23.7s ~", s1);
-	printf("\n");
-	int i4 = printf("~ %23.7s ~", s1);
-	printf("\n\n~%d~\n\n~~%d~\n\n", i3, i4);
-	//printf("\n\n~%d~\n\n", i4);
+
+	// int i1 = ft_printf("~%10.5i~\n", 42);
+	// int i2 = printf("~%10.5i~\n", 42);
+
+	// printf("~%d~\n~%d~\n", i1, i2);
 }

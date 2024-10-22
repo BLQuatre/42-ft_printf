@@ -1,0 +1,62 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_int_utils.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cauvray <cauvray@student.42lehavre.fr>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/10/22 10:21:05 by cauvray           #+#    #+#             */
+/*   Updated: 2024/10/22 10:49:57 by cauvray          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+#include "ft_printf.h"
+
+size_t	ft_nbrlen(int n)
+{
+	size_t	len;
+
+	if (n == 0)
+		return (1);
+	len = 0;
+	while (n > 0)
+	{
+		n /= 10;
+		len++;
+	}
+	return (len);
+}
+
+size_t	ft_unbrlen(unsigned int n)
+{
+	size_t	len;
+
+	if (n == 0)
+		return (1);
+	len = 0;
+	while (n > 0)
+	{
+		n /= 10;
+		len++;
+	}
+	return (len);
+}
+
+char	*ft_uitoa(unsigned int n)
+{
+	size_t	n_size;
+	char	*str;
+
+	n_size = ft_unbrlen(n);
+	str = (char *) malloc(sizeof(char) * (n_size + 1));
+	if (!str)
+		return (NULL);
+	str[n_size] = 0;
+	while (n_size-- > 0)
+	{
+		str[n_size] = (n % 10) + '0';
+		n /= 10;
+	}
+	return (str);
+}
