@@ -6,24 +6,27 @@
 /*   By: cauvray <cauvray@student.42lehavre.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/20 21:08:26 by cauvray           #+#    #+#             */
-/*   Updated: 2024/10/22 06:13:02 by cauvray          ###   ########.fr       */
+/*   Updated: 2024/10/23 23:37:02 by cauvray          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include "libft.h"
 
-static int	ft_spaces(char *str, int nb_bef, int nb_aft)
+static int	ft_spaces_s(char *str, t_printf_params *params)
 {
 	int	str_len;
 
 	str_len = ft_strlen(str);
-	if (str_len > nb_aft && nb_aft > 0)
-		str_len = nb_aft;
-	if (nb_bef > str_len)
-		return (nb_bef - str_len);
-	else
-		return (0);
+	if (str_len > params->nb_after_dot && params->nb_after_dot > 0)
+		str_len = params->nb_after_dot;
+	if (params->nb_before_dot >= str_len
+		&& (!params->dot || params->nb_after_dot > 0))
+		return (params->nb_before_dot - str_len);
+	if ((params->nb_before_dot > str_len && params->nb_before_dot > 0)
+		|| (params->dot && params->nb_after_dot == 0))
+		return (params->nb_before_dot);
+	return (0);
 }
 
 static size_t	ft_putnstr(char *str, size_t len)
@@ -32,7 +35,7 @@ static size_t	ft_putnstr(char *str, size_t len)
 
 	count = 0;
 	while (str[count] && count < len)
-		ft_putchar_fd(str[count++], 0);
+		ft_putchar(str[count++]);
 	return (count);
 }
 
@@ -42,9 +45,11 @@ size_t	ft_printf_s(t_printf_params *params, char *str)
 	int		spaces;
 
 	size = 0;
-	if (!str)
+	if (!str && (!params->dot || params->nb_after_dot > 5))
 		str = "(null)";
-	spaces = ft_spaces(str, params->nb_before_dot, params->nb_after_dot);
+	else if (!str)
+		str = "";
+	spaces = ft_spaces_s(str, params);
 	while (!params->minus && spaces-- > 0)
 		size += ft_putchar(' ');
 	if (params->dot)
