@@ -6,7 +6,7 @@
 /*   By: cauvray <cauvray@student.42lehavre.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 13:20:13 by cauvray           #+#    #+#             */
-/*   Updated: 2024/10/22 16:08:46 by cauvray          ###   ########.fr       */
+/*   Updated: 2024/10/23 23:50:31 by cauvray          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,7 @@ typedef struct s_printf_params
 int				ft_printf(const char *str, ...);
 				//__attribute__((format(printf, 1, 2)));
 size_t			ft_printf_s(t_printf_params *printf_params, char *str);
-int				ft_printf_x(t_printf_params *params,
-					unsigned long long n, int upper);
+int				ft_printf_x(t_printf_params *params, unsigned int n, int upper);
 size_t			ft_printf_c(t_printf_params *params, char c);
 int				ft_printf_id(t_printf_params *params, int n);
 unsigned int	ft_printf_u(t_printf_params *params, unsigned int n);

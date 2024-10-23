@@ -6,7 +6,7 @@
 #    By: cauvray <cauvray@student.42lehavre.fr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/18 13:09:18 by cauvray           #+#    #+#              #
-#    Updated: 2024/10/22 16:08:21 by cauvray          ###   ########.fr        #
+#    Updated: 2024/10/23 23:44:39 by cauvray          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,7 +61,7 @@ re:	fclean all
 bonus: re
 
 test: all
-	$(CC) $(CFLAGS) .tests/main2.c -L. -lftprintf -o main
+	$(CC) $(CFLAGS) .tests/main.c -L. -lftprintf -o main
 	clear && ./main
 
 .PHONY:	all clean fclean re

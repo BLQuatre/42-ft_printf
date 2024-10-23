@@ -1,0 +1,6 @@
+printf("STR: ~%s~\n", str);
+printf("Strlen: ~%ld~\n", ft_strlen(str));
+printf("Nb bef: ~%d~\n", params->nb_before_dot);
+printf("Dot ?: ~%s~\n", params->dot ? "Yes" : "No");
+printf("Nb aft: ~%d~\n", params->nb_after_dot);
+printf("Spaces: ~%d~\n", spaces);

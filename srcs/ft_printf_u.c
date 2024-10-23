@@ -6,7 +6,7 @@
 /*   By: cauvray <cauvray@student.42lehavre.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/20 21:08:26 by cauvray           #+#    #+#             */
-/*   Updated: 2024/10/22 12:15:21 by cauvray          ###   ########.fr       */
+/*   Updated: 2024/10/23 20:56:40 by cauvray          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,11 @@ static unsigned int	ft_spaces(char *str, t_printf_params *params)
 {
 	unsigned int	result;
 
-	result = 0;
-	if (params->nb_after_dot > params->nb_before_dot)
-		return (result);
-	result = params->nb_before_dot - params->nb_after_dot + 1;
+	if (params->nb_before_dot < params->nb_after_dot)
+		return (0);
+	result = params->nb_before_dot - params->nb_after_dot;
+	if (!params->minus)
+		result++;
 	if ((params->space || params->plus) && result > 1)
 		result--;
 	if ((params->nb_before_dot > params->nb_after_dot
@@ -39,6 +40,9 @@ unsigned int	ft_printf_u(t_printf_params *params, unsigned int n)
 	size = 0;
 	nbr = ft_uitoa(n);
 	spaces = ft_spaces(nbr, params);
+	if ((int) spaces < 0)
+		spaces = 0;
+	//printf("Spaces: %u\n", spaces);
 	while (!params->minus && --spaces > 0)
 		size += ft_putchar('0');
 	size += ft_putstr(nbr);

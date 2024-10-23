@@ -6,7 +6,7 @@
 /*   By: cauvray <cauvray@student.42lehavre.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 14:05:40 by cauvray           #+#    #+#             */
-/*   Updated: 2024/10/22 16:08:14 by cauvray          ###   ########.fr       */
+/*   Updated: 2024/10/23 23:39:49 by cauvray          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,16 +32,16 @@ int	ft_formats(va_list args, char *params_str)
 		print_length += ft_printf_c(params, va_arg(args, int));
 	else if (params->c == 's')
 		print_length += ft_printf_s(params, va_arg(args, char *));
-	else if (params->c == 'p')
-		print_length += ft_printf_p(params, va_arg(args, unsigned long long));
-	else if (params->c == 'd' || params->c == 'i')
-		print_length += ft_printf_id(params, va_arg(args, int));
-	else if (params->c == 'u')
-		print_length += ft_printf_u(params, va_arg(args, unsigned int));
+	// else if (params->c == 'p')
+	// 	print_length += ft_printf_p(params, va_arg(args, unsigned long long));
+	// else if (params->c == 'd' || params->c == 'i')
+	// 	print_length += ft_printf_id(params, va_arg(args, int));
+	// else if (params->c == 'u')
+	// 	print_length += ft_printf_u(params, va_arg(args, unsigned int));
 	else if (params->c == 'x')
 		print_length += ft_printf_x(params, va_arg(args, unsigned int), 0);
-	else if (params->c == 'X')
-		print_length += ft_printf_x(params, va_arg(args, unsigned int), 1);
+	// else if (params->c == 'X')
+	// 	print_length += ft_printf_x(params, va_arg(args, unsigned int), 1);
 	else if (params->c == '%')
 		print_length += ft_putchar('%');
 	free(params);

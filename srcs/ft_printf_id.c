@@ -6,7 +6,7 @@
 /*   By: cauvray <cauvray@student.42lehavre.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/20 21:08:26 by cauvray           #+#    #+#             */
-/*   Updated: 2024/10/22 16:57:16 by cauvray          ###   ########.fr       */
+/*   Updated: 2024/10/23 20:42:23 by cauvray          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,8 @@ int	ft_printf_id(t_printf_params *params, int n)
 	size = 0;
 	nbr = ft_itoa(n);
 	spaces = ft_spaces(nbr, params);
-	//printf("\nSpaces: ~%d~\n", spaces);
+	if ((int) spaces < 0)
+		spaces = 0;
 	while (!params->minus && --spaces > 0)
 		size += ft_putchar(' ');
 	if (params->space && !params->plus)
