@@ -6,7 +6,7 @@
 /*   By: cauvray <cauvray@student.42lehavre.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 04:26:45 by cauvray           #+#    #+#             */
-/*   Updated: 2024/10/22 15:41:53 by cauvray          ###   ########.fr       */
+/*   Updated: 2024/10/24 00:35:14 by cauvray          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@ char	*ft_get_printf_params_str(const char *str)
 	return (ft_substr(str, 0, i + 1));
 }
 
+// TODO: Zero flags being get even in number
+
 t_printf_params	*ft_get_printf_params(char *str)
 {
 	t_printf_params	*params;
@@ -80,11 +82,20 @@ t_printf_params	*ft_get_printf_params(char *str)
 	while (*str)
 	{
 		if (ft_isdigit(*str) && !(params->dot) && !(params->nb_before_dot))
+		{
 			params->nb_before_dot = ft_atoi(str);
+			str += ft_nbrlen(params->nb_before_dot);
+		}
 		else if (ft_isdigit(*str) && params->dot && !(params->nb_after_dot))
+		{
 			params->nb_after_dot = ft_atoi(str);
-		ft_save_flag(&params, *str);
-		str++;
+			str += ft_nbrlen(params->nb_after_dot);
+		}
+		else
+		{
+			ft_save_flag(&params, *str);
+			str++;
+		}
 	}
 	return (params);
 }
