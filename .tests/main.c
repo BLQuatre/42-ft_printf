@@ -6,7 +6,7 @@
 /*   By: cauvray <cauvray@student.42lehavre.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 17:25:24 by cauvray           #+#    #+#             */
-/*   Updated: 2024/10/24 22:53:33 by cauvray          ###   ########.fr       */
+/*   Updated: 2024/10/24 23:05:34 by cauvray          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@
 int main()
 {
 	//char *null = NULL;
-	char *to_parse = " %8.3i "; // -
+	char *to_parse = " %10.5i "; // -
 	char *to_parse_joined = ft_strjoin("~", ft_strjoin(to_parse, "~\n"));
-	int value = -8473;
+	int value = -216;
 
 	int i1 = printf(to_parse_joined, value);
 	int i2 = ft_printf(to_parse_joined, value);
@@ -30,4 +30,11 @@ int main()
 		printf("\n✅ Expected: %d | Got: %d\n\n", i1, i2);
 	else
 		printf("\n❌ Expected: %d | Got: %d\n\n", i1, i2);
+
+// 		- [OUTPUT] ft_printf("%10.5i", -216)
+// - [OUTPUT] ft_printf("%-10.5i", -216)
+// - [OUTPUT] ft_printf("%010.5i", -216)
+// - [OUTPUT] ft_printf("%10.5d", -216)
+// - [OUTPUT] ft_printf("%-10.5d", -216)
+// - [OUTPUT] ft_printf("%010.5d", -216)
 }
