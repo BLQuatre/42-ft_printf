@@ -6,7 +6,7 @@
 /*   By: cauvray <cauvray@student.42lehavre.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 14:05:40 by cauvray           #+#    #+#             */
-/*   Updated: 2024/10/23 23:39:49 by cauvray          ###   ########.fr       */
+/*   Updated: 2024/10/24 20:38:00 by cauvray          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,15 +33,15 @@ int	ft_formats(va_list args, char *params_str)
 	else if (params->c == 's')
 		print_length += ft_printf_s(params, va_arg(args, char *));
 	// else if (params->c == 'p')
-	// 	print_length += ft_printf_p(params, va_arg(args, unsigned long long));
-	// else if (params->c == 'd' || params->c == 'i')
-	// 	print_length += ft_printf_id(params, va_arg(args, int));
+		// print_length += ft_printf_p(params, va_arg(args, unsigned long long));
+	else if (params->c == 'd' || params->c == 'i')
+		print_length += ft_printf_id(params, va_arg(args, int));
 	// else if (params->c == 'u')
-	// 	print_length += ft_printf_u(params, va_arg(args, unsigned int));
-	else if (params->c == 'x')
-		print_length += ft_printf_x(params, va_arg(args, unsigned int), 0);
+		// print_length += ft_printf_u(params, va_arg(args, unsigned int));
+	// else if (params->c == 'x')
+		// print_length += ft_printf_x(params, va_arg(args, unsigned int), 0);
 	// else if (params->c == 'X')
-	// 	print_length += ft_printf_x(params, va_arg(args, unsigned int), 1);
+	 	// print_length += ft_printf_x(params, va_arg(args, unsigned int), 1);
 	else if (params->c == '%')
 		print_length += ft_putchar('%');
 	free(params);
@@ -65,6 +65,7 @@ int	ft_printf(const char *str, ...)
 			params_str = ft_get_printf_params_str(str + i);
 			if (params_str)
 			{
+				if (DEBUG) printf("[DEBUG] Params Str: |%s|\n", params_str);
 				print_length += ft_formats(args, params_str);
 				i += ft_strlen(params_str);
 			}

@@ -6,7 +6,7 @@
 /*   By: cauvray <cauvray@student.42lehavre.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 13:20:13 by cauvray           #+#    #+#             */
-/*   Updated: 2024/10/23 23:50:31 by cauvray          ###   ########.fr       */
+/*   Updated: 2024/10/24 21:51:36 by cauvray          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,10 @@
 
 # include <stdio.h>
 # include <stdarg.h>
+
+# ifndef DEBUG
+#  define DEBUG 0
+# endif
 
 typedef struct s_printf_params
 {

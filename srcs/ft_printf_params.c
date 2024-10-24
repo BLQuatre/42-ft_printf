@@ -6,7 +6,7 @@
 /*   By: cauvray <cauvray@student.42lehavre.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 04:26:45 by cauvray           #+#    #+#             */
-/*   Updated: 2024/10/24 00:35:14 by cauvray          ###   ########.fr       */
+/*   Updated: 2024/10/24 18:29:30 by cauvray          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,11 @@ static void	ft_save_flag(t_printf_params **printf_params, char c)
 	else if (c == '0')
 		(*printf_params)->zero = 1;
 	else if (c == '.')
+	{
 		(*printf_params)->dot = 1;
+		if ((*printf_params)->nb_before_dot == 0)
+			(*printf_params)->zero = 1;
+	}
 	else if (c == '#')
 		(*printf_params)->hashtag = 1;
 	else if (c == ' ')
@@ -69,8 +73,6 @@ char	*ft_get_printf_params_str(const char *str)
 	return (ft_substr(str, 0, i + 1));
 }
 
-// TODO: Zero flags being get even in number
-
 t_printf_params	*ft_get_printf_params(char *str)
 {
 	t_printf_params	*params;
@@ -81,7 +83,7 @@ t_printf_params	*ft_get_printf_params(char *str)
 	ft_memset(params, 0, sizeof(t_printf_params));
 	while (*str)
 	{
-		if (ft_isdigit(*str) && !(params->dot) && !(params->nb_before_dot))
+		if (*str >= '1' && *str <= '9' && !(params->dot) && !(params->nb_before_dot))
 		{
 			params->nb_before_dot = ft_atoi(str);
 			str += ft_nbrlen(params->nb_before_dot);
