@@ -6,7 +6,7 @@
 #    By: cauvray <cauvray@student.42lehavre.fr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/18 13:09:18 by cauvray           #+#    #+#              #
-#    Updated: 2024/10/24 19:21:31 by cauvray          ###   ########.fr        #
+#    Updated: 2024/10/25 01:17:59 by cauvray          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ INC_DIR	= includes
 _SRCS = ft_hex_utils.c \
 		ft_int_utils.c \
 		ft_printf_utils.c \
+		ft_params_utils.c \
 		ft_printf_params.c \
 		ft_printf_c.c \
 		ft_printf_s.c \

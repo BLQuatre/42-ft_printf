@@ -6,7 +6,7 @@
 /*   By: cauvray <cauvray@student.42lehavre.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 10:21:05 by cauvray           #+#    #+#             */
-/*   Updated: 2024/10/22 10:49:57 by cauvray          ###   ########.fr       */
+/*   Updated: 2024/10/25 01:46:50 by cauvray          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,4 +59,20 @@ char	*ft_uitoa(unsigned int n)
 		n /= 10;
 	}
 	return (str);
+}
+
+int	ft_putnnbr(char *str, long long *len, int remove_len)
+{
+	int	count;
+
+	count = 0;
+	if (*str == '-')
+		count += ft_putchar(*str++);
+	if (len && remove_len)
+		*len -= ft_strlen(str);
+	while (len && (*len)-- > 0)
+		count += ft_putchar('0');
+	while (*str)
+		count += ft_putchar(*str++);
+	return (count);
 }

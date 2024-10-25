@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Nom du fichier à modifier
-file="/home/cauvray/projects/ft_printf/includes/ft_printf.h"
+file="./includes/ft_printf.h"
 
 RED='\033[0;31m'
 GREEN='\033[0;32m'

@@ -6,38 +6,12 @@
 /*   By: cauvray <cauvray@student.42lehavre.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 04:26:45 by cauvray           #+#    #+#             */
-/*   Updated: 2024/10/24 18:29:30 by cauvray          ###   ########.fr       */
+/*   Updated: 2024/10/25 01:22:27 by cauvray          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include "libft.h"
-
-static int	ft_is_parsed_char(char c)
-{
-	char	*str;
-
-	str = "cspdiuxX%";
-	while (*str)
-	{
-		if (c == *str++)
-			return (1);
-	}
-	return (0);
-}
-
-static int	ft_is_print_flag(char c)
-{
-	char	*str;
-
-	str = "-0.# +";
-	while (*str)
-	{
-		if (ft_isdigit(c) || c == *str++)
-			return (1);
-	}
-	return (0);
-}
 
 static void	ft_save_flag(t_printf_params **printf_params, char c)
 {
@@ -83,7 +57,7 @@ t_printf_params	*ft_get_printf_params(char *str)
 	ft_memset(params, 0, sizeof(t_printf_params));
 	while (*str)
 	{
-		if (*str >= '1' && *str <= '9' && !(params->dot) && !(params->nb_before_dot))
+		if (ft_isnum_no0(*str) && !(params->dot) && !(params->nb_before_dot))
 		{
 			params->nb_before_dot = ft_atoi(str);
 			str += ft_nbrlen(params->nb_before_dot);
