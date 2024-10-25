@@ -6,7 +6,7 @@
 /*   By: cauvray <cauvray@student.42lehavre.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 13:20:13 by cauvray           #+#    #+#             */
-/*   Updated: 2024/10/25 01:47:01 by cauvray          ###   ########.fr       */
+/*   Updated: 2024/10/25 11:26:07 by cauvray          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ size_t			ft_nbrlen(int n);
 size_t			ft_unbrlen(unsigned int n);
 char			*ft_uitoa(unsigned int n);
 int				ft_putnnbr(char *str, long long *len, int remove_len);
-
 
 int				ft_putchar(char c);
 int				ft_putstr(char *str);

@@ -6,7 +6,7 @@
 /*   By: cauvray <cauvray@student.42lehavre.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 17:25:24 by cauvray           #+#    #+#             */
-/*   Updated: 2024/10/25 01:58:31 by cauvray          ###   ########.fr       */
+/*   Updated: 2024/10/25 11:17:11 by cauvray          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@
 int main()
 {
 	//char *null = NULL;
-	char *to_parse = " %.5u ";
+	char *to_parse = " %8.5u ";
 	char *to_parse_joined = ft_strjoin("~", ft_strjoin(to_parse, "~\n"));
-	unsigned int value = 2;
+	unsigned int value = 34;
 
 	int i1 = printf(to_parse_joined, value);
 	int i2 = ft_printf(to_parse_joined, value);

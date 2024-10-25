@@ -6,7 +6,7 @@
 /*   By: cauvray <cauvray@student.42lehavre.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 21:12:50 by cauvray           #+#    #+#             */
-/*   Updated: 2024/10/22 15:06:38 by cauvray          ###   ########.fr       */
+/*   Updated: 2024/10/25 11:27:12 by cauvray          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,6 @@ char	*ft_ptr_to_hex(unsigned long long n)
 
 	hex_array = "0123456789abcdef";
 	hex = (char *) malloc(ft_get_hex_size_ptr(n) + 1);
-	//printf("fuck %dee ", ft_get_hex_size_ptr(n) + 5);
 	if (!hex)
 		return (NULL);
 	i = 0;
