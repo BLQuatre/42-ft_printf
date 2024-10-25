@@ -6,7 +6,7 @@
 /*   By: cauvray <cauvray@student.42lehavre.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 03:52:29 by cauvray           #+#    #+#             */
-/*   Updated: 2024/10/22 10:40:02 by cauvray          ###   ########.fr       */
+/*   Updated: 2024/10/25 12:54:51 by cauvray          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,19 @@ int	ft_putnbr(int n)
 {
 	ft_putnbr_fd(n, 1);
 	return (ft_nbrlen(n));
+}
+
+int	ft_putstr_case(char *str, int upper)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (upper)
+			ft_putchar(ft_toupper(str[i++]));
+		else
+			ft_putchar(ft_tolower(str[i++]));
+	}
+	return (i);
 }

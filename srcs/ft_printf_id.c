@@ -6,7 +6,7 @@
 /*   By: cauvray <cauvray@student.42lehavre.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 22:21:01 by cauvray           #+#    #+#             */
-/*   Updated: 2024/10/25 01:48:09 by cauvray          ###   ########.fr       */
+/*   Updated: 2024/10/25 12:46:35 by cauvray          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,11 +54,11 @@ int	ft_printf_id(t_printf_params *params, int n)
 		size += ft_putchar(' ');
 	if (params->zero && spaces > 0
 		&& (!params->dot || params->nb_after_dot == 0))
-		size += ft_putnnbr(nbr, (long long *) &spaces, 0);
+		size += ft_putnstr0(nbr, (long long *) &spaces, 0);
 	else if (params->dot && params->nb_after_dot > 0)
-		size += ft_putnnbr(nbr, (long long *) &(params->nb_after_dot), 1);
+		size += ft_putnstr0(nbr, (long long *) &(params->nb_after_dot), 1);
 	else if (n != 0 || (n == 0 && !params->dot))
-		size += ft_putnnbr(nbr, 0, 0);
+		size += ft_putnstr0(nbr, 0, 0);
 	while (spaces-- > 0)
 		size += ft_putchar(' ');
 	free(nbr);
