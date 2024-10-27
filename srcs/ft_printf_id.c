@@ -6,7 +6,7 @@
 /*   By: cauvray <cauvray@student.42lehavre.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 22:21:01 by cauvray           #+#    #+#             */
-/*   Updated: 2024/10/27 02:10:25 by cauvray          ###   ########.fr       */
+/*   Updated: 2024/10/27 20:57:00 by cauvray          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ static long	ft_spaces_id(char *str, t_printf_params *params)
 				> (int)ft_strlen(str) + params->nb_after_dot)
 			|| params->plus || params->space || (*str == '-'
 				&& params->nb_before_dot > params->nb_after_dot)
-		) && (int)ft_strlen(str) - 1 < params->nb_after_dot
+		) && (((int)ft_strlen(str) - 1 < params->nb_after_dot) || *str != '-')
+		//|| ((int) ft_strlen(str) > params->nb_after_dot && params->nb_before_dot - params->nb_after_dot > (int) ft_strlen(str)))
 	)
 		result--;
 	if (*str == '0' && params->dot && params->nb_after_dot == 0)
@@ -49,12 +50,12 @@ size_t	ft_printf_id(t_printf_params *params, int n)
 	size = 0;
 	nbr = ft_itoa(n);
 	spaces = ft_spaces_id(nbr, params);
+	while (!params->minus && (!params->zero || params->dot) && spaces-- > 0)
+		size += ft_putchar(' ');
 	if (params->space && n >= 0)
 		size += ft_putchar(' ');
 	else if (params->plus && n >= 0)
 		size += ft_putchar('+');
-	while (!params->minus && (!params->zero || params->dot) && spaces-- > 0)
-		size += ft_putchar(' ');
 	if (params->zero && spaces > 0
 		&& (!params->dot || params->nb_after_dot == 0))
 		size += ft_putnstr0(nbr, (long long *) &spaces, 0);
