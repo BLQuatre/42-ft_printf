@@ -6,7 +6,7 @@
 /*   By: cauvray <cauvray@student.42lehavre.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/20 21:08:26 by cauvray           #+#    #+#             */
-/*   Updated: 2024/10/25 13:39:25 by cauvray          ###   ########.fr       */
+/*   Updated: 2024/10/27 00:42:16 by cauvray          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,11 @@ static long	ft_spaces_x(char *str, t_printf_params *params)
 	return (0);
 }
 
-int	ft_printf_x(t_printf_params *params, unsigned int n, int upper)
+size_t	ft_printf_x(t_printf_params *params, unsigned int n, int upper)
 {
-	int					size;
-	long				spaces;
-	char				*hex;
+	size_t	size;
+	long	spaces;
+	char	*hex;
 
 	size = 0;
 	hex = ft_int_to_hex(n, upper);

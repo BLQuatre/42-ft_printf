@@ -6,7 +6,7 @@
 /*   By: cauvray <cauvray@student.42lehavre.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 22:21:01 by cauvray           #+#    #+#             */
-/*   Updated: 2024/10/25 12:46:35 by cauvray          ###   ########.fr       */
+/*   Updated: 2024/10/27 02:10:25 by cauvray          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,12 @@ static long	ft_spaces_id(char *str, t_printf_params *params)
 	result = params->nb_before_dot - ft_strlen(str);
 	if (params->dot && params->nb_after_dot > (int) ft_strlen(str))
 		result = params->nb_before_dot - params->nb_after_dot;
-	if ((*str == '-' && params->dot && (int)(params->nb_before_dot
-			- ft_strlen(str)) > params->nb_after_dot)
-		|| params->plus || params->space)
+	if (((*str == '-' && params->dot && params->nb_before_dot
+				> (int)ft_strlen(str) + params->nb_after_dot)
+			|| params->plus || params->space || (*str == '-'
+				&& params->nb_before_dot > params->nb_after_dot)
+		) && (int)ft_strlen(str) - 1 < params->nb_after_dot
+	)
 		result--;
 	if (*str == '0' && params->dot && params->nb_after_dot == 0)
 		result++;
@@ -37,9 +40,9 @@ static long	ft_spaces_id(char *str, t_printf_params *params)
 	return (0);
 }
 
-int	ft_printf_id(t_printf_params *params, int n)
+size_t	ft_printf_id(t_printf_params *params, int n)
 {
-	int		size;
+	size_t	size;
 	long	spaces;
 	char	*nbr;
 

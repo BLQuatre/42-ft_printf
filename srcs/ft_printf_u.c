@@ -6,7 +6,7 @@
 /*   By: cauvray <cauvray@student.42lehavre.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/20 21:08:26 by cauvray           #+#    #+#             */
-/*   Updated: 2024/10/25 12:46:29 by cauvray          ###   ########.fr       */
+/*   Updated: 2024/10/26 19:51:54 by cauvray          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ static long long	ft_spaces_u(char *str, t_printf_params *params)
 	return (0);
 }
 
-unsigned int	ft_printf_u(t_printf_params *params, unsigned int n)
+size_t	ft_printf_u(t_printf_params *params, unsigned int n)
 {
-	unsigned int	size;
+	size_t			size;
 	long long		spaces;
 	char			*nbr;
 

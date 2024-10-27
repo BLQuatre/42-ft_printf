@@ -6,7 +6,7 @@
 /*   By: cauvray <cauvray@student.42lehavre.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 17:25:24 by cauvray           #+#    #+#             */
-/*   Updated: 2024/10/25 12:58:41 by cauvray          ###   ########.fr       */
+/*   Updated: 2024/10/27 02:01:37 by cauvray          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,36 +16,28 @@
 #include <assert.h>
 #include <limits.h>
 
-int main()
+void test_id(char *to_parse, int value)
 {
-	//char *null = NULL;
-	char *to_parse = " %#x ";
 	char *to_parse_joined = ft_strjoin("~", ft_strjoin(to_parse, "~\n"));
-	long long value = LONG_MIN;
-
 	int i1 = printf(to_parse_joined, value);
 	int i2 = ft_printf(to_parse_joined, value);
-
+	printf("\n\nTest: %s\n", to_parse);
 	if (i1 == i2)
 		printf("\n✅ Expected: %d | Got: %d\n\n", i1, i2);
 	else
 		printf("\n❌ Expected: %d | Got: %d\n\n", i1, i2);
 }
 
-// - [OUTPUT] ft_printf("%.5u", 2)
-// - [OUTPUT] ft_printf("%.3u", 0)
-// - [OUTPUT] ft_printf("%8.5u", 34)
-// - [OUTPUT] ft_printf("%8.5u", 0)
-// - [OUTPUT] ft_printf("%3.7u", 3267)
-// - [OUTPUT] ft_printf("%-8.5u", 34)
-// - [OUTPUT] ft_printf("%-8.5u", 0)
-// - [OUTPUT] ft_printf("%-3.7u", 3267)
-// - [OUTPUT] ft_printf("%08.5u", 34)
-// - [OUTPUT] ft_printf("%08.5u", 0)
-// - [OUTPUT] ft_printf("%08.3u", 8375)
-// - [OUTPUT] ft_printf("%03.7u", 3267)
-// - [OUTPUT] ft_printf("%.0u", 0)
-// - [OUTPUT] ft_printf("%.u", 0)
-// - [OUTPUT] ft_printf("%5.0u", 0)
-// - [OUTPUT] ft_printf("%5.u", 0)
-// - [OUTPUT] ft_printf("%-5.0u", 0)
+int main()
+{
+	char *to_parse = "^.^/% 24.2d^.^/";
+	char *to_parse_joined = ft_strjoin("~", ft_strjoin(to_parse, "~\n"));
+	int i1 = printf(to_parse_joined, 1200425960);
+	int i2 = ft_printf(to_parse_joined, 1200425960);
+	printf("\n\nTest: %s\n", to_parse);
+	if (i1 == i2)
+		printf("\n✅ Expected: %d | Got: %d\n\n", i1, i2);
+	else
+		printf("\n❌ Expected: %d | Got: %d\n\n", i1, i2);
+	test_id("%08.5i", 34);
+}
