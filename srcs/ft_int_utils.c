@@ -6,7 +6,7 @@
 /*   By: cauvray <cauvray@student.42lehavre.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 10:21:05 by cauvray           #+#    #+#             */
-/*   Updated: 2024/10/27 21:20:07 by cauvray          ###   ########.fr       */
+/*   Updated: 2024/10/28 19:58:02 by cauvray          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,16 +65,13 @@ int	ft_putnstr0(char *str, long long *len, int remove_len)
 {
 	int	count;
 
-	printf("\nSTR: ~%s~\n", str);
-	printf("LEN: ~%lld~\n", *len);
-
 	count = 0;
 	if (*str == '-')
 		count += ft_putchar(*str++);
 	if (len && remove_len)
 		*len -= ft_strlen(str);
-	// while (len && (*len)-- > 0)
-	// 	count += ft_putchar('0');
+	while (len && (*len)-- > 0)
+		count += ft_putchar('0');
 	while (*str)
 		count += ft_putchar(*str++);
 	return (count);

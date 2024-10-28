@@ -6,7 +6,7 @@
 /*   By: cauvray <cauvray@student.42lehavre.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/20 21:08:26 by cauvray           #+#    #+#             */
-/*   Updated: 2024/10/27 21:37:23 by cauvray          ###   ########.fr       */
+/*   Updated: 2024/10/28 20:19:16 by cauvray          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,10 @@ static long	ft_spaces_x(char *str, t_printf_params *params)
 	result = params->nb_before_dot - ft_strlen(str);
 	if (params->dot && params->nb_after_dot > (int) ft_strlen(str))
 		result = params->nb_before_dot - params->nb_after_dot;
-	if (params->hashtag && result >= 2)
+	if (params->hashtag && (result >= 2 || params->nb_before_dot
+			- params->nb_after_dot < (int) ft_strlen(str) + 2
+			|| (!params->dot && params->nb_before_dot
+				< (int) ft_strlen(str) + 2)) && *str != '0')
 		result -= 2;
 	if (*str == '0' && params->dot && params->nb_after_dot == 0)
 		result++;
@@ -35,9 +38,12 @@ static long	ft_spaces_x(char *str, t_printf_params *params)
 	return (0);
 }
 
-static void test(long long *l)
+static	size_t	ft_putnstr_int0(char *str, int len, int remove_len)
 {
-	printf("\nHex passed -> (long long): ~%lld~\n", *l);
+	long long	value;
+
+	value = len;
+	return (ft_putnstr0(str, &value, remove_len));
 }
 
 size_t	ft_printf_x(t_printf_params *params, unsigned int n, int upper)
@@ -49,12 +55,8 @@ size_t	ft_printf_x(t_printf_params *params, unsigned int n, int upper)
 	size = 0;
 	hex = ft_int_to_hex(n, upper);
 	spaces = ft_spaces_x(hex, params);
-	printf("\nHex (long): ~%ld~\n", spaces);
-	printf("Hex (long long): ~%lld~\n", (long long)spaces);
-	test((long long *) &spaces);
 	while (!params->minus && (!params->zero || params->dot) && spaces-- > 0)
 		size += ft_putchar(' ');
-	test((long long *) &spaces);
 	if (params->hashtag && n != 0)
 		size += ft_putstr_case("0x", upper);
 	if (params->zero && spaces > 0
@@ -62,12 +64,7 @@ size_t	ft_printf_x(t_printf_params *params, unsigned int n, int upper)
 			|| params->nb_after_dot > params->nb_before_dot))
 		size += ft_putnstr0(hex, (long long *) &spaces, 0);
 	else if (params->dot && params->nb_after_dot > 0)
-	{
-		printf("Test: %d\n", params->nb_after_dot);
-		printf("Test2: %lld\n", (long long)params->nb_after_dot);
-		test((long long *) &(params->nb_after_dot));
-		size += ft_putnstr0(hex, (long long *) &(params->nb_after_dot), 1);
-	}
+		size += ft_putnstr_int0(hex, params->nb_after_dot, 1);
 	else if (n != 0 || (n == 0 && !params->dot))
 		size += ft_putnstr0(hex, 0, 0);
 	while (spaces-- > 0)
