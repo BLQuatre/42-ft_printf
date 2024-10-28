@@ -6,7 +6,7 @@
 /*   By: cauvray <cauvray@student.42lehavre.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 22:21:01 by cauvray           #+#    #+#             */
-/*   Updated: 2024/10/27 20:57:00 by cauvray          ###   ########.fr       */
+/*   Updated: 2024/10/27 21:05:24 by cauvray          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ static long	ft_spaces_id(char *str, t_printf_params *params)
 			|| params->plus || params->space || (*str == '-'
 				&& params->nb_before_dot > params->nb_after_dot)
 		) && (((int)ft_strlen(str) - 1 < params->nb_after_dot) || *str != '-')
-		//|| ((int) ft_strlen(str) > params->nb_after_dot && params->nb_before_dot - params->nb_after_dot > (int) ft_strlen(str)))
 	)
 		result--;
 	if (*str == '0' && params->dot && params->nb_after_dot == 0)
